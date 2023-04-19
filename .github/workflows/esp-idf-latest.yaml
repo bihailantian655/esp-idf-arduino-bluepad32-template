@@ -22,13 +22,13 @@ jobs:
     - run: pwd
     - run: ls
 
-    
-    - name: Arduino build ESP32
+
+    - name: Arduino build ESP32-C3
       uses: espressif/esp-idf-ci-action@main
       with:
         esp_idf_version: release-v4.4
-        target: esp32
-        command: "idf.py set-target esp32 && idf.py build"
+        target: esp32c3
+        command: "idf.py set-target esp32c3 && idf.py build"
         
     - run: ls ./build
     - run: ls ./build/partition_table
