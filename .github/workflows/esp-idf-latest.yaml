@@ -36,17 +36,18 @@ jobs:
     - run: ls ./build
     - run: ls ./build/partition_table
     - run: ls ./build/bootloader
+    - run: pip install esptool
 
     - uses: actions/upload-artifact@v2
       with:
         name: esp32_partition_table.bin
-        path:  /build/partition_table
+        path:  /build/partition_table.bin
 
 
     - uses: actions/upload-artifact@v2
       with:
         name: esp32_bootloader.bin
-        path:   /build/bootloader
+        path:   /build/bootloader.bin
     
             
     - uses: actions/upload-artifact@v2
@@ -66,13 +67,13 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: espc3_partition_table.bin
-        path:  /build/partition_table
+        path:  /build/partition_table.bin
 
 
     - uses: actions/upload-artifact@v2
       with:
         name: espc3_bootloader.bin
-        path:   /build/bootloader
+        path:   /build/bootloader.bin
     
             
     - uses: actions/upload-artifact@v2
