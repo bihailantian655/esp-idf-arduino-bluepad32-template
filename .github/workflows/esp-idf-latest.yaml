@@ -23,6 +23,38 @@ jobs:
     - run: ls
 
 
+
+        
+    - name: Arduino build ESP32
+      uses: espressif/esp-idf-ci-action@main
+      with:
+        esp_idf_version: release-v4.4
+        target: esp32
+        command: "idf.py set-target esp32 && idf.py build"
+        
+        
+    - run: ls ./build
+    - run: ls ./build/partition_table
+    - run: ls ./build/bootloader
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: esp32_partition_table.bin
+        path:  /build/partition_table
+
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: esp32_bootloader.bin
+        path:   /build/bootloader
+    
+            
+    - uses: actions/upload-artifact@v2
+      with:
+        name: esp32_app.bin
+        path:   build/app-template.bin
+        
+        
     - name: Arduino build ESP32-C3
       uses: espressif/esp-idf-ci-action@main
       with:
@@ -30,13 +62,33 @@ jobs:
         target: esp32c3
         command: "idf.py set-target esp32c3 && idf.py build"
         
-    - run: ls ./build
-    - run: ls ./build/partition_table
-    - run: ls ./build/bootloader
+        
+    - uses: actions/upload-artifact@v2
+      with:
+        name: espc3_partition_table.bin
+        path:  /build/partition_table
 
 
+    - uses: actions/upload-artifact@v2
+      with:
+        name: espc3_bootloader.bin
+        path:   /build/bootloader
+    
             
     - uses: actions/upload-artifact@v2
       with:
-        name: c.bin
+        name: espc3_app.bin
         path:   build/app-template.bin
+        
+    - run : cd ./build
+        
+    - run: esptool.py --chip ESP32-C3 merge_bin -o merged-flash.bin @flash_args
+    
+    - uses: actions/upload-artifact@v2
+      with:
+        name: espc3_merged.bin
+        path:   build/merged-flash.bin
+
+        
+    
+        
