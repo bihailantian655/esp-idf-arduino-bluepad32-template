@@ -41,13 +41,13 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: esp32_partition_table.bin
-        path:  /build/partition_table/partition_table.bin
+        path:  build/partition_table/partition_table.bin
 
 
     - uses: actions/upload-artifact@v2
       with:
         name: esp32_bootloader.bin
-        path:   /build/bootloader/bootloader.bin
+        path:   build/bootloader/bootloader.bin
     
             
     - uses: actions/upload-artifact@v2
@@ -73,13 +73,13 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: espc3_partition_table.bin
-        path:  /build/partition_table/partition_table.bin
+        path:  build/partition_table/partition_table.bin
 
 
     - uses: actions/upload-artifact@v2
       with:
         name: espc3_bootloader.bin
-        path:   /build/bootloader/bootloader.bin
+        path:   build/bootloader/bootloader.bin
     
             
     - uses: actions/upload-artifact@v2
@@ -91,7 +91,8 @@ jobs:
     - run : pwd
     - run : ls
         
-    - run: esptool.py --chip ESP32-C3 merge_bin -o merged-flash.bin @/home/runner/work/esp-idf-arduino-bluepad32-template/esp-idf-arduino-bluepad32-template/build/flash_args
+
+    - run: esptool.py --chip ESP32-C3 merge_bin -o merged-flash.bin @home/runner/work/esp-idf-arduino-bluepad32-template/esp-idf-arduino-bluepad32-template/build/flash_args
     
     - uses: actions/upload-artifact@v2
       with:
@@ -99,16 +100,8 @@ jobs:
         path:   build/merged-flash.bin
     
     
-    
-    
 
-     
-    - run: esptool.py --chip ESP32-C3 merge_bin -o merged-flash.bin @flash_args
-    - uses: actions/upload-artifact@v2
-      with:
-        name: espc3_merged.bin
-        path:   build/merged-flash.bin
-
+  
         
     
         
