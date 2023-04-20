@@ -93,9 +93,16 @@ jobs:
         name: espc3_app.bin
         path:   build/app-template.bin
         
-    - run : cd  ./build
+    - run : cd  build
     - run : pwd
     - run : ls
+    - run: esptool.py --chip ESP32-C3 merge_bin -o merged-flash.bin @/home/runner/work/esp-idf-arduino-bluepad32-template/esp-idf-arduino-bluepad32-template/build/flash_args
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: espc3_merged_abs1.bin
+        path:   build/merged-flash.bin
+        
     - run: cd   /home/runner/work/esp-idf-arduino-bluepad32-template/esp-idf-arduino-bluepad32-template/build/
     - run : pwd
     - run : ls
