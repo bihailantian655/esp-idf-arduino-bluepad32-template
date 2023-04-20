@@ -41,7 +41,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: esp32_partition_table.bin
-        path:  build/partition_table/partition_table.bin
+        path:  build/partition_table/partition-table.bin
 
 
     - uses: actions/upload-artifact@v2
@@ -54,12 +54,18 @@ jobs:
       with:
         name: esp32_app.bin
         path:   build/app-template.bin
-    - run: esptool.py --chip ESP32 merge_bin -o merged-flash.bin @/home/runner/work/esp-idf-arduino-bluepad32-template/esp-idf-arduino-bluepad32-template/build/flash_args
-    
-    - uses: actions/upload-artifact@v2
-      with:
-        name: esp_merged_abs.bin
-        path:   build/merged-flash.bin
+
+
+
+
+
+
+
+
+
+
+
+
         
         
     - name: Arduino build ESP32-C3
@@ -73,7 +79,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: espc3_partition_table.bin
-        path:  build/partition_table/partition_table.bin
+        path:  build/partition_table/partition-table.bin
 
 
     - uses: actions/upload-artifact@v2
